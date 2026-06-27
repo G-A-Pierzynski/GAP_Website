@@ -3,123 +3,159 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>gabriel@lse:~$</title>
+<title>Gabriel A. Pierzynski</title>
 <style>
   :root {
-    --bg: #0a0e0a;
-    --green: #33ff66;
-    --dim: #1f8f3f;
-    --amber: #ffb000;
-    --cyan: #33d6ff;
-    --line: #14361c;
-    --max: 820px;
+    --deep: #0a2540;
+    --sea: #12476b;
+    --foam: #cfe8f0;
+    --sky: #add4e6;
+    --sand: #f4ecd8;
+    --ink: #11314a;
+    --rope: #c8943f;
+    --max: 800px;
   }
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   body {
     margin: 0;
-    background: var(--bg);
-    color: var(--green);
-    font-family: "SF Mono", "Fira Code", "Consolas", "Menlo", monospace;
-    font-size: 16px;
+    font-family: "Georgia", "Iowan Old Style", "Palatino", serif;
+    color: var(--ink);
+    background: var(--sand);
     line-height: 1.7;
-    text-shadow: 0 0 4px rgba(51,255,102,0.35);
+    font-size: 18px;
   }
-  /* faint scanline overlay */
-  body::after {
-    content: "";
-    position: fixed; inset: 0; pointer-events: none; z-index: 9;
-    background: repeating-linear-gradient(
-      to bottom, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 2px,
-      rgba(0,0,0,0.18) 3px, rgba(0,0,0,0) 4px);
+
+  /* ---- SKY + SEA HEADER WITH SAILING FRIGATE ---- */
+  .hero {
+    position: relative; overflow: hidden;
+    background: linear-gradient(180deg, #bfe2f0 0%, #87bdd8 45%, #2f6f97 65%, #12476b 100%);
+    padding: 70px 22px 0;
+    border-bottom: 4px solid var(--deep);
   }
-  .wrap { max-width: var(--max); margin: 0 auto; padding: 50px 22px 90px; }
-
-  a { color: var(--cyan); text-decoration: none; }
-  a:hover { color: #fff; text-shadow: 0 0 8px var(--cyan); }
-
-  .prompt { color: var(--dim); }
-  .prompt::before { content: "gabriel@lse:~$ "; color: var(--amber); }
-
-  header { margin-bottom: 30px; }
-  h1 {
-    font-size: 1.9rem; margin: 6px 0 4px; color: var(--green); font-weight: 700;
-    letter-spacing: 1px;
+  .hero-inner { max-width: var(--max); margin: 0 auto; position: relative; z-index: 3; }
+  .hero h1 {
+    font-size: 2.6rem; margin: 0 0 6px; color: #fff; letter-spacing: 0.5px;
+    text-shadow: 0 2px 10px rgba(10,37,64,0.5);
   }
-  .sub { color: var(--dim); font-size: 0.9rem; margin-bottom: 18px; }
-
-  .cursor {
-    display: inline-block; width: 10px; height: 1.1em;
-    background: var(--green); margin-left: 2px;
-    vertical-align: text-bottom; animation: blink 1s steps(1) infinite;
-    box-shadow: 0 0 6px var(--green);
+  .hero .tag {
+    color: var(--sand); font-style: italic; font-size: 1.05rem;
+    text-shadow: 0 1px 6px rgba(10,37,64,0.6); margin-bottom: 80px; display: block;
   }
-  @keyframes blink { 50% { opacity: 0; } }
 
-  .links { margin: 16px 0 8px; font-size: 0.9rem; }
-  .links a { margin-right: 16px; }
-  .links a::before { content: "["; color: var(--dim); }
-  .links a::after { content: "]"; color: var(--dim); }
+  /* the ship, sailing across */
+  .ship {
+    position: absolute; bottom: 46px; left: -120px; z-index: 2;
+    font-size: 56px; line-height: 1;
+    animation: sail 26s linear infinite;
+    filter: drop-shadow(0 4px 4px rgba(10,37,64,0.4));
+  }
+  @keyframes sail {
+    0%   { transform: translateX(0) rotate(-2deg); }
+    50%  { transform: translateX(60vw) rotate(2deg); }
+    100% { transform: translateX(120vw) rotate(-2deg); }
+  }
 
-  nav { margin: 22px 0 40px; font-size: 0.9rem; }
-  nav a { margin-right: 18px; color: var(--green); }
-  nav a:hover { color: #fff; }
+  /* layered animated waves at the bottom of the hero */
+  .waves { position: absolute; left: 0; right: 0; bottom: -1px; z-index: 2; line-height: 0; }
+  .waves svg { display: block; width: 200%; height: 70px; animation: roll 12s linear infinite; }
+  @keyframes roll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 50px 22px 80px; }
+
+  a { color: var(--sea); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  .links { margin-top: 18px; font-family: -apple-system, Arial, sans-serif; font-size: 0.92rem; }
+  .links a {
+    color: #fff; margin-right: 14px; border: 1px solid rgba(255,255,255,0.6);
+    padding: 4px 12px; border-radius: 20px; display: inline-block; margin-bottom: 8px;
+  }
+  .links a:hover { background: rgba(255,255,255,0.18); text-decoration: none; }
+
+  nav {
+    background: var(--deep); margin: 0; padding: 14px 22px;
+    font-family: -apple-system, Arial, sans-serif; font-size: 0.95rem;
+    position: sticky; top: 0; z-index: 5; text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+  }
+  nav a { color: var(--foam); margin: 0 14px; }
+  nav a:hover { color: #fff; text-decoration: none; }
 
   h2 {
-    font-size: 1.15rem; margin: 50px 0 18px; color: var(--amber);
-    border-bottom: 1px dashed var(--line); padding-bottom: 8px;
-    text-shadow: 0 0 6px rgba(255,176,0,0.4);
+    font-size: 1.6rem; margin: 56px 0 20px; color: var(--deep);
+    padding-bottom: 8px; border-bottom: 2px solid var(--rope);
+    position: relative;
   }
-  h2::before { content: "## "; color: var(--dim); }
+  h2::before { content: "⚓ "; color: var(--rope); }
+
+  h3 { font-size: 1.12rem; margin: 26px 0 4px; color: var(--ink); }
 
   .intro p { margin: 0 0 16px; }
 
-  .entry, .role { margin-bottom: 22px; padding-left: 14px; border-left: 1px solid var(--line); }
-  .entry .title, .role h3 { color: var(--green); font-weight: 700; margin: 0 0 2px; font-size: 1rem; }
-  .entry .authors, .entry .venue, .role .meta {
-    display: block; color: var(--dim); font-size: 0.85rem;
+  .entry, .role {
+    margin-bottom: 22px; padding: 14px 18px;
+    background: #fff; border-left: 4px solid var(--sea);
+    border-radius: 4px; box-shadow: 0 1px 4px rgba(17,49,74,0.08);
   }
-  .role p { margin: 6px 0 0; color: var(--green); font-size: 0.9rem; opacity: 0.92; }
+  .entry .title, .role h3 { font-weight: 700; margin-top: 0; }
+  .entry .authors, .entry .venue, .role .meta { display: block; color: #5a6b78; font-size: 0.95rem; }
+  .entry .venue { font-style: italic; }
+  .role p { margin: 8px 0 0; font-size: 0.96rem; }
 
-  .tags { margin-top: 8px; font-size: 0.82rem; }
-  .tags a { margin-right: 14px; }
-  .tags a::before { content: "> "; color: var(--dim); }
+  .tags { margin-top: 8px; font-family: -apple-system, Arial, sans-serif; font-size: 0.85rem; }
+  .tags a {
+    display: inline-block; border: 1px solid var(--rope); color: var(--rope);
+    border-radius: 4px; padding: 2px 10px; margin-right: 8px;
+  }
+  .tags a:hover { background: var(--rope); color: #fff; text-decoration: none; }
 
   footer {
-    margin-top: 70px; padding-top: 20px; border-top: 1px dashed var(--line);
-    color: var(--dim); font-size: 0.78rem;
+    margin-top: 70px; padding-top: 24px; border-top: 2px solid var(--rope);
+    font-size: 0.82rem; color: #5a6b78;
+    font-family: -apple-system, Arial, sans-serif;
   }
 
   @media (max-width: 600px) {
-    body { font-size: 14px; }
-    h1 { font-size: 1.4rem; }
-    nav a { display: inline-block; margin-bottom: 6px; }
+    body { font-size: 16px; }
+    .hero h1 { font-size: 1.9rem; }
+    .ship { font-size: 40px; }
+    nav a { margin: 0 8px; }
   }
 </style>
 </head>
 <body>
-<div class="wrap">
 
-  <header>
-    <div class="prompt">whoami</div>
-    <h1>Gabriel A. Pierzynski<span class="cursor"></span></h1>
-    <div class="sub">// incoming PhD · Economic Geography · LSE</div>
-    <div class="links">
-      <a href="mailto:g.a.pierzynski@lse.ac.uk">email</a>
-      <a href="https://www.linkedin.com/in/gabriel-a-pierzynski/">linkedin</a>
-      <a href="https://www.lse.ac.uk/Hellenic-Observatory/People/Research-Group/gabriel-pierzynski">lse</a>
+  <div class="hero">
+    <div class="hero-inner">
+      <h1>Gabriel A. Pierzynski</h1>
+      <span class="tag">Charting the economics of digital technology &amp; the social sciences</span>
+      <div class="links">
+        <a href="mailto:g.a.pierzynski@lse.ac.uk">Email</a>
+        <a href="https://www.linkedin.com/in/gabriel-a-pierzynski/">LinkedIn</a>
+        <a href="https://www.lse.ac.uk/Hellenic-Observatory/People/Research-Group/gabriel-pierzynski">LSE Profile</a>
+      </div>
     </div>
-    <nav>
-      <a href="#about">./about</a>
-      <a href="#experience">./experience</a>
-      <a href="#publications">./publications</a>
-      <a href="#writing">./writing</a>
-      <a href="#talks">./talks</a>
-    </nav>
-  </header>
+    <div class="ship">⛵</div>
+    <div class="waves">
+      <svg viewBox="0 0 1200 70" preserveAspectRatio="none">
+        <path d="M0,30 C150,60 350,0 600,30 C850,60 1050,0 1200,30 L1200,70 L0,70 Z" fill="#0a2540" opacity="0.5"/>
+        <path d="M0,40 C150,70 350,10 600,40 C850,70 1050,10 1200,40 L1200,70 L0,70 Z" fill="#0a2540"/>
+      </svg>
+    </div>
+  </div>
+
+  <nav>
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#publications">Publications</a>
+    <a href="#writing">Writing</a>
+    <a href="#talks">Talks</a>
+  </nav>
+
+  <div class="wrap">
 
   <section id="about" class="intro">
-    <div class="prompt">cat about.txt</div>
     <p>Hi! I'm Gabriel, an incoming PhD student in Economic Geography at the
     London School of Economics and Political Science (LSE), starting in
     September. My doctoral research, supervised by Professor
@@ -140,11 +176,13 @@
 
     <p>I hold an MSc in European and International Public Policy (Political
     Economy) from LSE (2024) and a BSc in Philosophy and Politics from the
-    University of Bristol (2023). I work in English and Polish.</p>
+    University of Bristol (2023). When I'm not at the keyboard, you'll often find
+    me at sea — I once built a satellite SMS weather-routing system for
+    blue-water sailors. I work in English and Polish.</p>
   </section>
 
   <section id="experience">
-    <h2>experience</h2>
+    <h2>Experience</h2>
 
     <div class="role">
       <h3>Research Associate — Economics &amp; Data Science</h3>
@@ -183,14 +221,14 @@
   </section>
 
   <section id="publications">
-    <h2>publications</h2>
+    <h2>Publications</h2>
 
     <div class="entry">
       <span class="title">The Brexit trajectory: structure and agency in a potential Polexit</span>
       <span class="authors">Roch Dunin-Wąsowicz, Max Migden, Gabriel A. Pierzynski</span>
       <span class="venue">Frontiers in Political Science, 2026</span>
       <div class="tags">
-        <a href="">paper</a>
+        <a href="">Paper</a>
       </div>
     </div>
 
@@ -199,7 +237,7 @@
       <span class="authors">Gabriel A. Pierzynski, Jonathan Joseph</span>
       <span class="venue">Journal for the Theory of Social Behaviour, 2025</span>
       <div class="tags">
-        <a href="https://doi.org/10.1111/jtsb.70026">paper</a>
+        <a href="https://doi.org/10.1111/jtsb.70026">Paper</a>
       </div>
     </div>
 
@@ -208,20 +246,20 @@
       <span class="authors">Gabriel A. Pierzynski, Jonathan Joseph</span>
       <span class="venue">Journal for the Theory of Social Behaviour, 2025</span>
       <div class="tags">
-        <a href="https://doi.org/10.1111/jtsb.70007">paper</a>
+        <a href="https://doi.org/10.1111/jtsb.70007">Paper</a>
       </div>
     </div>
   </section>
 
   <section id="writing">
-    <h2>writing</h2>
+    <h2>Writing &amp; Policy Pieces</h2>
 
     <div class="entry">
       <span class="title">Why the Russia-Ukraine war isn't just about NATO and Putin</span>
       <span class="authors">Gabriel A. Pierzynski, Jonathan Joseph</span>
       <span class="venue">LSE EUROPP Blog, 2025</span>
       <div class="tags">
-        <a href="https://blogs.lse.ac.uk/europpblog/2025/08/15/why-the-russia-ukraine-war-isnt-just-about-nato-and-putin/">read</a>
+        <a href="https://blogs.lse.ac.uk/europpblog/2025/08/15/why-the-russia-ukraine-war-isnt-just-about-nato-and-putin/">Read</a>
       </div>
     </div>
 
@@ -230,7 +268,7 @@
       <span class="authors">Gabriel A. Pierzynski, Roch Dunin-Wąsowicz</span>
       <span class="venue">89 Global, 2025</span>
       <div class="tags">
-        <a href="https://89gcs.com/the-eus-geopolitical-turn-how-the-eus-reaction-to-the-war-in-ukraine-constitutes-an-integrationist-shift/">read</a>
+        <a href="https://89gcs.com/the-eus-geopolitical-turn-how-the-eus-reaction-to-the-war-in-ukraine-constitutes-an-integrationist-shift/">Read</a>
       </div>
     </div>
 
@@ -239,7 +277,7 @@
       <span class="authors">Roch Dunin-Wąsowicz, Max Migden, Gabriel A. Pierzynski</span>
       <span class="venue">LSE EUROPP Blog, 2023</span>
       <div class="tags">
-        <a href="https://blogs.lse.ac.uk/europpblog/2023/10/13/lessons-from-brexit-is-polexit-a-possibility/">read</a>
+        <a href="https://blogs.lse.ac.uk/europpblog/2023/10/13/lessons-from-brexit-is-polexit-a-possibility/">Read</a>
       </div>
     </div>
 
@@ -248,13 +286,13 @@
       <span class="authors">Gabriel A. Pierzynski</span>
       <span class="venue">Sigma Iota Rho Online Journal of International Relations, 2022</span>
       <div class="tags">
-        <a href="https://www.sirjournal.org/op-ed/the-european-army-a-symbol">read</a>
+        <a href="https://www.sirjournal.org/op-ed/the-european-army-a-symbol">Read</a>
       </div>
     </div>
   </section>
 
   <section id="talks">
-    <h2>talks</h2>
+    <h2>Talks</h2>
 
     <div class="entry">
       <span class="title">Patrimonial imperialism: explaining the Russia-Ukraine war</span>
@@ -270,10 +308,9 @@
   </section>
 
   <footer>
-    <span class="prompt">echo $COPYRIGHT</span><br>
-    © 2026 Gabriel A. Pierzynski — built with HTML + a little caffeine.
+    © 2026 Gabriel A. Pierzynski. ⚓ Fair winds and following seas.
   </footer>
 
-</div>
+  </div>
 </body>
 </html>
