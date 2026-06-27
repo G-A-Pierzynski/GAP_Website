@@ -6,12 +6,12 @@
 <title>Gabriel A. Pierzynski</title>
 <style>
   :root {
-    --text: #41484d;
-    --heading: #2e3538;
-    --muted: #7e878c;
-    --accent: #f2849e;        /* HTML5 UP-style coral/pink accent */
-    --accent-2: #7f96ff;
-    --line: #e3e6e8;
+    --text: #38474f;
+    --heading: #143642;        /* deep sea navy */
+    --muted: #6b8089;
+    --accent: #1b98b5;         /* teal */
+    --accent-2: #2c6e8f;       /* mid ocean blue */
+    --line: #dde7ea;
     --bg: #ffffff;
     --max: 740px;
   }
@@ -52,11 +52,11 @@
   .intro { padding: 28px 0 56px; text-align: left; }
   .intro p { margin: 0 0 18px; }
 
-  /* ---------- GRADIENT DIVIDER BANDS ---------- */
+  /* ---------- GRADIENT DIVIDER BANDS (sea tones) ---------- */
   .band { height: 90px; width: 100%; }
-  .band.cmy { background: linear-gradient(90deg, #29c2d6 0%, #f2849e 50%, #ffd36b 100%); }
-  .band.blue { background: linear-gradient(90deg, #7f96ff 0%, #29c2d6 100%); }
-  .band.warm { background: linear-gradient(90deg, #f2849e 0%, #ffd36b 100%); }
+  .band.deep  { background: linear-gradient(90deg, #143642 0%, #1b98b5 100%); }
+  .band.tide  { background: linear-gradient(90deg, #1b98b5 0%, #6fd3c7 100%); }
+  .band.shore { background: linear-gradient(90deg, #2c6e8f 0%, #a8e0d8 100%); }
 
   /* ---------- SECTIONS ---------- */
   section { padding: 56px 0; }
@@ -71,9 +71,8 @@
   .entry .venue { display: block; font-style: italic; color: var(--muted); }
   .tags { margin-top: 8px; }
   .tags a {
-    display: inline-block; border: 1px solid var(--line); border-bottom: 1px solid var(--line);
-    border-radius: 4px; padding: 3px 14px; margin-right: 8px; font-size: 0.82rem;
-    color: var(--muted);
+    display: inline-block; border: 1px solid var(--line); border-radius: 4px;
+    padding: 3px 14px; margin-right: 8px; font-size: 0.82rem; color: var(--muted);
   }
   .tags a:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
 
@@ -126,15 +125,15 @@
       Before this, I was a Blue Book Trainee at the European Commission, working
       on economic analysis and the European Semester.</p>
 
-      <p>I obtained an MSc in European and International Public Policy (Political
-      Economy) from the University of Copenhagen's partner LSE (2024) and a BSc in
-      Philosophy and Politics from the University of Bristol (2023). When I'm not
-      at the keyboard, you'll often find me at sea — I once built a satellite SMS
-      weather-routing system for blue-water sailors. I work in English and Polish.</p>
+      <p>I hold an MSc in European and International Public Policy (Political
+      Economy) from LSE (2024) and a BSc in Philosophy and Politics from the
+      University of Bristol (2023). When I'm not at the keyboard, you'll often
+      find me at sea — I once built a satellite SMS weather-routing system for
+      blue-water sailors. I work in English and Polish.</p>
     </div>
   </div>
 
-  <div class="band cmy"></div>
+  <div class="band deep"></div>
 
   <section id="publications">
     <div class="wrap">
@@ -169,7 +168,7 @@
     </div>
   </section>
 
-  <div class="band blue"></div>
+  <div class="band tide"></div>
 
   <section id="writing">
     <div class="wrap">
@@ -213,7 +212,7 @@
     </div>
   </section>
 
-  <div class="band warm"></div>
+  <div class="band shore"></div>
 
   <section id="experience">
     <div class="wrap">
@@ -224,9 +223,9 @@
         <h4>London School of Economics and Political Science (2025–present)</h4>
         <p>Lead the data work across several empirical economics projects under
         Professor Vassilis Monastiriotis. Built the most complete dataset of EU
-        industrial-policy expenditure (2000–2026); led analysis comparing the local
-        economic effects of data-centre build-out in Europe and the US; and built
-        LLM-based tools for text analysis of parliamentary debate and for
+        industrial-policy expenditure (2000–2026); led analysis comparing the
+        local economic effects of data-centre build-out in Europe and the US; and
+        built LLM-based tools for text analysis of parliamentary debate and for
         identifying drivers of regional growth accelerations.</p>
       </div>
 
