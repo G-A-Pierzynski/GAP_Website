@@ -2,315 +2,264 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 <title>Gabriel A. Pierzynski</title>
 <style>
   :root {
-    --deep: #0a2540;
-    --sea: #12476b;
-    --foam: #cfe8f0;
-    --sky: #add4e6;
-    --sand: #f4ecd8;
-    --ink: #11314a;
-    --rope: #c8943f;
-    --max: 800px;
+    --text: #41484d;
+    --heading: #2e3538;
+    --muted: #7e878c;
+    --accent: #f2849e;        /* HTML5 UP-style coral/pink accent */
+    --accent-2: #7f96ff;
+    --line: #e3e6e8;
+    --bg: #ffffff;
+    --max: 740px;
   }
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   body {
     margin: 0;
-    font-family: "Georgia", "Iowan Old Style", "Palatino", serif;
-    color: var(--ink);
-    background: var(--sand);
-    line-height: 1.7;
-    font-size: 18px;
+    font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.75;
+    font-size: 17px;
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 28px; }
+
+  a { color: var(--text); text-decoration: none; border-bottom: 1px dotted var(--muted); }
+  a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+
+  /* ---------- HEADER ---------- */
+  header { text-align: center; padding: 70px 28px 10px; }
+  header h1 {
+    font-size: 2.6rem; font-weight: 600; letter-spacing: 0.4px;
+    margin: 0 0 18px; color: var(--heading);
+  }
+  .socials { display: flex; justify-content: center; gap: 14px; margin-bottom: 8px; }
+  .socials a {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 42px; height: 42px; border-radius: 50%;
+    border: 1px solid var(--line); color: var(--muted);
+    font-family: Arial, sans-serif; font-size: 0.72rem; font-weight: 600;
+    letter-spacing: 0.5px; transition: all .2s;
+  }
+  .socials a:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+  /* ---------- INTRO ---------- */
+  .intro { padding: 28px 0 56px; text-align: left; }
+  .intro p { margin: 0 0 18px; }
+
+  /* ---------- GRADIENT DIVIDER BANDS ---------- */
+  .band { height: 90px; width: 100%; }
+  .band.cmy { background: linear-gradient(90deg, #29c2d6 0%, #f2849e 50%, #ffd36b 100%); }
+  .band.blue { background: linear-gradient(90deg, #7f96ff 0%, #29c2d6 100%); }
+  .band.warm { background: linear-gradient(90deg, #f2849e 0%, #ffd36b 100%); }
+
+  /* ---------- SECTIONS ---------- */
+  section { padding: 56px 0; }
+  section h2 {
+    font-size: 1.9rem; font-weight: 600; color: var(--heading);
+    margin: 0 0 28px; text-align: center;
   }
 
-  /* ---- SKY + SEA HEADER WITH SAILING FRIGATE ---- */
-  .hero {
-    position: relative; overflow: hidden;
-    background: linear-gradient(180deg, #bfe2f0 0%, #87bdd8 45%, #2f6f97 65%, #12476b 100%);
-    padding: 70px 22px 0;
-    border-bottom: 4px solid var(--deep);
-  }
-  .hero-inner { max-width: var(--max); margin: 0 auto; position: relative; z-index: 3; }
-  .hero h1 {
-    font-size: 2.6rem; margin: 0 0 6px; color: #fff; letter-spacing: 0.5px;
-    text-shadow: 0 2px 10px rgba(10,37,64,0.5);
-  }
-  .hero .tag {
-    color: var(--sand); font-style: italic; font-size: 1.05rem;
-    text-shadow: 0 1px 6px rgba(10,37,64,0.6); margin-bottom: 80px; display: block;
-  }
-
-  /* the ship, sailing across */
-  .ship {
-    position: absolute; bottom: 46px; left: -120px; z-index: 2;
-    font-size: 56px; line-height: 1;
-    animation: sail 26s linear infinite;
-    filter: drop-shadow(0 4px 4px rgba(10,37,64,0.4));
-  }
-  @keyframes sail {
-    0%   { transform: translateX(0) rotate(-2deg); }
-    50%  { transform: translateX(60vw) rotate(2deg); }
-    100% { transform: translateX(120vw) rotate(-2deg); }
-  }
-
-  /* layered animated waves at the bottom of the hero */
-  .waves { position: absolute; left: 0; right: 0; bottom: -1px; z-index: 2; line-height: 0; }
-  .waves svg { display: block; width: 200%; height: 70px; animation: roll 12s linear infinite; }
-  @keyframes roll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-
-  .wrap { max-width: var(--max); margin: 0 auto; padding: 50px 22px 80px; }
-
-  a { color: var(--sea); text-decoration: none; }
-  a:hover { text-decoration: underline; }
-
-  .links { margin-top: 18px; font-family: -apple-system, Arial, sans-serif; font-size: 0.92rem; }
-  .links a {
-    color: #fff; margin-right: 14px; border: 1px solid rgba(255,255,255,0.6);
-    padding: 4px 12px; border-radius: 20px; display: inline-block; margin-bottom: 8px;
-  }
-  .links a:hover { background: rgba(255,255,255,0.18); text-decoration: none; }
-
-  nav {
-    background: var(--deep); margin: 0; padding: 14px 22px;
-    font-family: -apple-system, Arial, sans-serif; font-size: 0.95rem;
-    position: sticky; top: 0; z-index: 5; text-align: center;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.25);
-  }
-  nav a { color: var(--foam); margin: 0 14px; }
-  nav a:hover { color: #fff; text-decoration: none; }
-
-  h2 {
-    font-size: 1.6rem; margin: 56px 0 20px; color: var(--deep);
-    padding-bottom: 8px; border-bottom: 2px solid var(--rope);
-    position: relative;
-  }
-  h2::before { content: "⚓ "; color: var(--rope); }
-
-  h3 { font-size: 1.12rem; margin: 26px 0 4px; color: var(--ink); }
-
-  .intro p { margin: 0 0 16px; }
-
-  .entry, .role {
-    margin-bottom: 22px; padding: 14px 18px;
-    background: #fff; border-left: 4px solid var(--sea);
-    border-radius: 4px; box-shadow: 0 1px 4px rgba(17,49,74,0.08);
-  }
-  .entry .title, .role h3 { font-weight: 700; margin-top: 0; }
-  .entry .authors, .entry .venue, .role .meta { display: block; color: #5a6b78; font-size: 0.95rem; }
-  .entry .venue { font-style: italic; }
-  .role p { margin: 8px 0 0; font-size: 0.96rem; }
-
-  .tags { margin-top: 8px; font-family: -apple-system, Arial, sans-serif; font-size: 0.85rem; }
+  .entry { margin-bottom: 26px; }
+  .entry .title { font-weight: 600; color: var(--heading); }
+  .entry .authors { display: block; }
+  .entry .venue { display: block; font-style: italic; color: var(--muted); }
+  .tags { margin-top: 8px; }
   .tags a {
-    display: inline-block; border: 1px solid var(--rope); color: var(--rope);
-    border-radius: 4px; padding: 2px 10px; margin-right: 8px;
+    display: inline-block; border: 1px solid var(--line); border-bottom: 1px solid var(--line);
+    border-radius: 4px; padding: 3px 14px; margin-right: 8px; font-size: 0.82rem;
+    color: var(--muted);
   }
-  .tags a:hover { background: var(--rope); color: #fff; text-decoration: none; }
+  .tags a:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
 
+  .course { margin-bottom: 32px; }
+  .course h3 { font-size: 1.2rem; font-weight: 600; color: var(--heading); margin: 0; }
+  .course h4 { font-size: 0.95rem; font-weight: 600; color: var(--accent-2); margin: 2px 0 10px; }
+  .course p { margin: 0; }
+
+  /* ---------- FOOTER ---------- */
   footer {
-    margin-top: 70px; padding-top: 24px; border-top: 2px solid var(--rope);
-    font-size: 0.82rem; color: #5a6b78;
-    font-family: -apple-system, Arial, sans-serif;
+    text-align: center; padding: 44px 28px 60px; font-size: 0.85rem;
+    color: var(--muted); border-top: 1px solid var(--line); margin-top: 20px;
   }
 
   @media (max-width: 600px) {
+    header h1 { font-size: 2rem; }
+    section h2 { font-size: 1.5rem; }
     body { font-size: 16px; }
-    .hero h1 { font-size: 1.9rem; }
-    .ship { font-size: 40px; }
-    nav a { margin: 0 8px; }
   }
 </style>
 </head>
 <body>
 
-  <div class="hero">
-    <div class="hero-inner">
-      <h1>Gabriel A. Pierzynski</h1>
-      <span class="tag">Charting the economics of digital technology &amp; the social sciences</span>
-      <div class="links">
-        <a href="mailto:g.a.pierzynski@lse.ac.uk">Email</a>
-        <a href="https://www.linkedin.com/in/gabriel-a-pierzynski/">LinkedIn</a>
-        <a href="https://www.lse.ac.uk/Hellenic-Observatory/People/Research-Group/gabriel-pierzynski">LSE Profile</a>
-      </div>
+  <header>
+    <h1>Gabriel A. Pierzynski</h1>
+    <div class="socials">
+      <a href="https://www.linkedin.com/in/gabriel-a-pierzynski/" title="LinkedIn">in</a>
+      <a href="https://www.lse.ac.uk/Hellenic-Observatory/People/Research-Group/gabriel-pierzynski" title="LSE">LSE</a>
+      <a href="mailto:g.a.pierzynski@lse.ac.uk" title="Email">@</a>
     </div>
-    <div class="ship">⛵</div>
-    <div class="waves">
-      <svg viewBox="0 0 1200 70" preserveAspectRatio="none">
-        <path d="M0,30 C150,60 350,0 600,30 C850,60 1050,0 1200,30 L1200,70 L0,70 Z" fill="#0a2540" opacity="0.5"/>
-        <path d="M0,40 C150,70 350,10 600,40 C850,70 1050,10 1200,40 L1200,70 L0,70 Z" fill="#0a2540"/>
-      </svg>
+  </header>
+
+  <div class="wrap">
+    <div class="intro">
+      <p>Hi! I'm Gabriel, an incoming PhD student in Economic Geography at the
+      London School of Economics and Political Science (LSE), starting in
+      September. My doctoral research, advised by
+      <a href="https://www.lse.ac.uk/geography-and-environment/people/academic-staff/neil-lee">Neil Lee</a>
+      and
+      <a href="https://www.lse.ac.uk/european-institute/people/monastiriotis-vassilis">Vassilis Monastiriotis</a>,
+      investigates the economics of digital technology diffusion — why digital
+      technologies cluster spatially, and the role of human capital, competition,
+      and industrial policy in how they spread. I work primarily with econometric
+      and data-science methods.</p>
+
+      <p>Alongside my PhD, I am a Research Associate in Economics and Data Science
+      at LSE, where I lead the data work across several empirical economics
+      projects. My broader interests sit at the intersection of computational
+      social science, economic geography, and international relations theory.
+      Before this, I was a Blue Book Trainee at the European Commission, working
+      on economic analysis and the European Semester.</p>
+
+      <p>I obtained an MSc in European and International Public Policy (Political
+      Economy) from the University of Copenhagen's partner LSE (2024) and a BSc in
+      Philosophy and Politics from the University of Bristol (2023). When I'm not
+      at the keyboard, you'll often find me at sea — I once built a satellite SMS
+      weather-routing system for blue-water sailors. I work in English and Polish.</p>
     </div>
   </div>
 
-  <nav>
-    <a href="#about">About</a>
-    <a href="#experience">Experience</a>
-    <a href="#publications">Publications</a>
-    <a href="#writing">Writing</a>
-    <a href="#talks">Talks</a>
-  </nav>
-
-  <div class="wrap">
-
-  <section id="about" class="intro">
-    <p>Hi! I'm Gabriel, an incoming PhD student in Economic Geography at the
-    London School of Economics and Political Science (LSE), starting in
-    September. My doctoral research, supervised by Professor
-    <a href="https://www.lse.ac.uk/geography-and-environment/people/academic-staff/neil-lee">Neil Lee</a>
-    and Professor
-    <a href="https://www.lse.ac.uk/european-institute/people/monastiriotis-vassilis">Vassilis Monastiriotis</a>,
-    investigates the economics of digital technology diffusion — why digital
-    technologies cluster spatially, and the role of human capital, competition,
-    and industrial policy in how they spread. I work primarily with econometric
-    and data-science methods.</p>
-
-    <p>Alongside my PhD, I am a Research Associate in Economics and Data Science
-    at LSE, where I lead the data work across several empirical economics
-    projects. My broader interests sit at the intersection of computational
-    social science, economic geography, and international relations theory.
-    Before this, I was a Blue Book Trainee at the European Commission, working on
-    economic analysis and the European Semester.</p>
-
-    <p>I hold an MSc in European and International Public Policy (Political
-    Economy) from LSE (2024) and a BSc in Philosophy and Politics from the
-    University of Bristol (2023). When I'm not at the keyboard, you'll often find
-    me at sea — I once built a satellite SMS weather-routing system for
-    blue-water sailors. I work in English and Polish.</p>
-  </section>
-
-  <section id="experience">
-    <h2>Experience</h2>
-
-    <div class="role">
-      <h3>Research Associate — Economics &amp; Data Science</h3>
-      <span class="meta">LSE · 2025–present</span>
-      <p>Lead the data work across several empirical economics projects under
-      Professor Vassilis Monastiriotis. Built the most complete dataset of EU
-      industrial-policy expenditure (2000–2026); led analysis comparing the local
-      economic effects of data-centre build-out in Europe and the US; and built
-      LLM-based tools for text analysis of parliamentary debate and for
-      identifying drivers of regional growth accelerations.</p>
-    </div>
-
-    <div class="role">
-      <h3>Data Science Intern</h3>
-      <span class="meta">Strand Analytica · 2025</span>
-      <p>Implemented machine-learning models (logistic regression, random
-      forests, network analysis) in Python for quantitative wargaming studies,
-      and developed data-automation code integrated into the company's core
-      analytical software.</p>
-    </div>
-
-    <div class="role">
-      <h3>Blue Book Trainee — Economic Analysis &amp; European Semester</h3>
-      <span class="meta">European Commission · 2024–2025</span>
-      <p>Performed econometric analysis of regional inequalities under EU Cohesion
-      Policy in R, and built a reproducible pipeline for large-scale territorial
-      data processing from EU statistical databases.</p>
-    </div>
-
-    <div class="role">
-      <h3>Junior Policy Associate</h3>
-      <span class="meta">89 Global / 89 Initiative · 2023–2025</span>
-      <p>Conducted and published policy research on EU exits and on political
-      responses to the Russo-Ukrainian war.</p>
-    </div>
-  </section>
+  <div class="band cmy"></div>
 
   <section id="publications">
-    <h2>Publications</h2>
+    <div class="wrap">
+      <h2>Publications</h2>
 
-    <div class="entry">
-      <span class="title">The Brexit trajectory: structure and agency in a potential Polexit</span>
-      <span class="authors">Roch Dunin-Wąsowicz, Max Migden, Gabriel A. Pierzynski</span>
-      <span class="venue">Frontiers in Political Science, 2026</span>
-      <div class="tags">
-        <a href="">Paper</a>
+      <div class="entry">
+        <span class="title">The Brexit trajectory: structure and agency in a potential Polexit</span>
+        <span class="authors">Roch Dunin-Wąsowicz, Max Migden, Gabriel A. Pierzynski</span>
+        <span class="venue">Frontiers in Political Science, 2026</span>
+        <div class="tags">
+          <a href="">Paper</a>
+        </div>
       </div>
-    </div>
 
-    <div class="entry">
-      <span class="title">A response to Heikki Patomäki: on social mechanisms</span>
-      <span class="authors">Gabriel A. Pierzynski, Jonathan Joseph</span>
-      <span class="venue">Journal for the Theory of Social Behaviour, 2025</span>
-      <div class="tags">
-        <a href="https://doi.org/10.1111/jtsb.70026">Paper</a>
+      <div class="entry">
+        <span class="title">A response to Heikki Patomäki: on social mechanisms</span>
+        <span class="authors">Gabriel A. Pierzynski, Jonathan Joseph</span>
+        <span class="venue">Journal for the Theory of Social Behaviour, 2025</span>
+        <div class="tags">
+          <a href="https://doi.org/10.1111/jtsb.70026">Paper</a>
+        </div>
       </div>
-    </div>
 
-    <div class="entry">
-      <span class="title">Patrimonial imperialism: a taxonomy of the causes of the Russo-Ukrainian war</span>
-      <span class="authors">Gabriel A. Pierzynski, Jonathan Joseph</span>
-      <span class="venue">Journal for the Theory of Social Behaviour, 2025</span>
-      <div class="tags">
-        <a href="https://doi.org/10.1111/jtsb.70007">Paper</a>
+      <div class="entry">
+        <span class="title">Patrimonial imperialism: a taxonomy of the causes of the Russo-Ukrainian war</span>
+        <span class="authors">Gabriel A. Pierzynski, Jonathan Joseph</span>
+        <span class="venue">Journal for the Theory of Social Behaviour, 2025</span>
+        <div class="tags">
+          <a href="https://doi.org/10.1111/jtsb.70007">Paper</a>
+        </div>
       </div>
     </div>
   </section>
+
+  <div class="band blue"></div>
 
   <section id="writing">
-    <h2>Writing &amp; Policy Pieces</h2>
+    <div class="wrap">
+      <h2>Writing &amp; Policy Pieces</h2>
 
-    <div class="entry">
-      <span class="title">Why the Russia-Ukraine war isn't just about NATO and Putin</span>
-      <span class="authors">Gabriel A. Pierzynski, Jonathan Joseph</span>
-      <span class="venue">LSE EUROPP Blog, 2025</span>
-      <div class="tags">
-        <a href="https://blogs.lse.ac.uk/europpblog/2025/08/15/why-the-russia-ukraine-war-isnt-just-about-nato-and-putin/">Read</a>
+      <div class="entry">
+        <span class="title">Why the Russia-Ukraine war isn't just about NATO and Putin</span>
+        <span class="authors">Gabriel A. Pierzynski, Jonathan Joseph</span>
+        <span class="venue">LSE EUROPP Blog, 2025</span>
+        <div class="tags">
+          <a href="https://blogs.lse.ac.uk/europpblog/2025/08/15/why-the-russia-ukraine-war-isnt-just-about-nato-and-putin/">Read</a>
+        </div>
       </div>
-    </div>
 
-    <div class="entry">
-      <span class="title">The EU's geopolitical turn: the reaction to the war in Ukraine and its implications</span>
-      <span class="authors">Gabriel A. Pierzynski, Roch Dunin-Wąsowicz</span>
-      <span class="venue">89 Global, 2025</span>
-      <div class="tags">
-        <a href="https://89gcs.com/the-eus-geopolitical-turn-how-the-eus-reaction-to-the-war-in-ukraine-constitutes-an-integrationist-shift/">Read</a>
+      <div class="entry">
+        <span class="title">The EU's geopolitical turn: the reaction to the war in Ukraine and its implications</span>
+        <span class="authors">Gabriel A. Pierzynski, Roch Dunin-Wąsowicz</span>
+        <span class="venue">89 Global, 2025</span>
+        <div class="tags">
+          <a href="https://89gcs.com/the-eus-geopolitical-turn-how-the-eus-reaction-to-the-war-in-ukraine-constitutes-an-integrationist-shift/">Read</a>
+        </div>
       </div>
-    </div>
 
-    <div class="entry">
-      <span class="title">Lessons from Brexit — is Polexit a possibility?</span>
-      <span class="authors">Roch Dunin-Wąsowicz, Max Migden, Gabriel A. Pierzynski</span>
-      <span class="venue">LSE EUROPP Blog, 2023</span>
-      <div class="tags">
-        <a href="https://blogs.lse.ac.uk/europpblog/2023/10/13/lessons-from-brexit-is-polexit-a-possibility/">Read</a>
+      <div class="entry">
+        <span class="title">Lessons from Brexit — is Polexit a possibility?</span>
+        <span class="authors">Roch Dunin-Wąsowicz, Max Migden, Gabriel A. Pierzynski</span>
+        <span class="venue">LSE EUROPP Blog, 2023</span>
+        <div class="tags">
+          <a href="https://blogs.lse.ac.uk/europpblog/2023/10/13/lessons-from-brexit-is-polexit-a-possibility/">Read</a>
+        </div>
       </div>
-    </div>
 
-    <div class="entry">
-      <span class="title">The European army: a symbol</span>
-      <span class="authors">Gabriel A. Pierzynski</span>
-      <span class="venue">Sigma Iota Rho Online Journal of International Relations, 2022</span>
-      <div class="tags">
-        <a href="https://www.sirjournal.org/op-ed/the-european-army-a-symbol">Read</a>
+      <div class="entry">
+        <span class="title">The European army: a symbol</span>
+        <span class="authors">Gabriel A. Pierzynski</span>
+        <span class="venue">Sigma Iota Rho Online Journal of International Relations, 2022</span>
+        <div class="tags">
+          <a href="https://www.sirjournal.org/op-ed/the-european-army-a-symbol">Read</a>
+        </div>
       </div>
     </div>
   </section>
 
-  <section id="talks">
-    <h2>Talks</h2>
+  <div class="band warm"></div>
 
-    <div class="entry">
-      <span class="title">Patrimonial imperialism: explaining the Russia-Ukraine war</span>
-      <span class="authors">Gabriel A. Pierzynski</span>
-      <span class="venue">Bristol International Affairs Society, 2025</span>
-    </div>
+  <section id="experience">
+    <div class="wrap">
+      <h2>Experience</h2>
 
-    <div class="entry">
-      <span class="title">LSE Festival — Knowledge Beyond Boundaries: Interdisciplinary Student Research Conference</span>
-      <span class="authors">Gabriel A. Pierzynski</span>
-      <span class="venue">London School of Economics and Political Science, 2025</span>
+      <div class="course">
+        <h3>Research Associate — Economics &amp; Data Science</h3>
+        <h4>London School of Economics and Political Science (2025–present)</h4>
+        <p>Lead the data work across several empirical economics projects under
+        Professor Vassilis Monastiriotis. Built the most complete dataset of EU
+        industrial-policy expenditure (2000–2026); led analysis comparing the local
+        economic effects of data-centre build-out in Europe and the US; and built
+        LLM-based tools for text analysis of parliamentary debate and for
+        identifying drivers of regional growth accelerations.</p>
+      </div>
+
+      <div class="course">
+        <h3>Data Science Intern</h3>
+        <h4>Strand Analytica (2025)</h4>
+        <p>Implemented machine-learning models (logistic regression, random
+        forests, network analysis) in Python for quantitative wargaming studies,
+        and developed data-automation code integrated into the company's core
+        analytical software.</p>
+      </div>
+
+      <div class="course">
+        <h3>Blue Book Trainee — Economic Analysis &amp; European Semester</h3>
+        <h4>European Commission (2024–2025)</h4>
+        <p>Performed econometric analysis of regional inequalities under EU
+        Cohesion Policy in R, and built a reproducible pipeline for large-scale
+        territorial data processing from EU statistical databases.</p>
+      </div>
+
+      <div class="course">
+        <h3>Junior Policy Associate</h3>
+        <h4>89 Global / 89 Initiative (2023–2025)</h4>
+        <p>Conducted and published policy research on EU exits and on political
+        responses to the Russo-Ukrainian war.</p>
+      </div>
     </div>
   </section>
 
   <footer>
-    © 2026 Gabriel A. Pierzynski. ⚓ Fair winds and following seas.
+    © 2026 Gabriel A. Pierzynski. Design inspired by a layout from
+    <a href="https://html5up.net/">HTML5 UP</a>.
   </footer>
 
-  </div>
 </body>
 </html>
