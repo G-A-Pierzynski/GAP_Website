@@ -6,279 +6,506 @@
 <title>Gabriel A. Pierzynski</title>
 <style>
   :root {
-    --text: #38474f;
-    --heading: #143642;
-    --muted: #6b8089;
-    --accent: #1b98b5;
-    --accent-2: #2c6e8f;
-    --line: #dde7ea;
+    --canvas: #fdfcfc;
+    --paper: #ffffff;
+    --surface: #f1f6f5;
+    --surface-strong: #e2eeee;
+    --ink: #102a32;
+    --heading: #071f27;
+    --muted: #657b80;
+    --soft: #89a0a3;
+    --line: #dce8e7;
+    --sea-deep: #082f49;
+    --sea: #0f6f88;
+    --sea-bright: #25b7d3;
+    --foam: #dff8fb;
+    --sunlit: #eef8f6;
     --max: 740px;
+    --shadow: 0 1px 1px rgba(7, 31, 39, 0.04), 0 12px 36px rgba(7, 31, 39, 0.16);
+    --ring: 0 0 0 1px rgba(7, 31, 39, 0.06), 0 1px 2px rgba(7, 31, 39, 0.05);
   }
+
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   body {
+    position: relative;
     margin: 0;
-    font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    color: var(--text);
-    line-height: 1.75;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    color: var(--ink);
+    line-height: 1.72;
     font-size: 17px;
-    font-weight: 300;
+    font-weight: 400;
     -webkit-font-smoothing: antialiased;
-    /* deep ocean gradient, fixed so it stays put while scrolling */
-    background: linear-gradient(180deg, #0a2e44 0%, #11556e 35%, #1b98b5 70%, #3fc0c9 100%);
-    background-attachment: fixed;
+    background: #edf3f4;
     min-height: 100vh;
   }
 
-  /* drifting wave layers fixed to the bottom of the viewport */
-  .ocean { position: fixed; left: 0; right: 0; bottom: 0; height: 180px; z-index: 0; pointer-events: none; overflow: hidden; }
-  .ocean svg { position: absolute; bottom: 0; width: 200%; height: 100%; }
-  .wave1 { animation: drift 18s linear infinite; opacity: 0.45; }
-  .wave2 { animation: drift 26s linear infinite reverse; opacity: 0.30; }
-  .wave3 { animation: drift 34s linear infinite; opacity: 0.20; }
-  @keyframes drift { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background:
+      linear-gradient(rgba(255, 255, 255, 0.58), rgba(255, 255, 255, 0.58)),
+      url("assets/sea-background.jpeg") center / cover no-repeat;
+    filter: saturate(0.82) brightness(1.12);
+  }
 
-  /* the white content card floating on the ocean */
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.34), rgba(255, 255, 255, 0.66) 42%, rgba(255, 255, 255, 0.38)),
+      radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.44), transparent 34%);
+  }
+
   .sheet {
-    position: relative; z-index: 1;
-    max-width: 820px; margin: 50px auto; background: #ffffff;
-    border-radius: 14px; overflow: hidden;
-    box-shadow: 0 20px 60px rgba(5,30,45,0.45);
+    position: relative;
+    z-index: 1;
+    max-width: 880px;
+    margin: 64px auto;
+    overflow: hidden;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.78), rgba(255, 255, 255, 0.64)),
+      rgba(255, 255, 255, 0.58);
+    border: 0;
+    border-radius: 24px;
+    box-shadow: 0 1px 1px rgba(7, 31, 39, 0.04), 0 22px 64px rgba(7, 31, 39, 0.22);
+    backdrop-filter: blur(18px) saturate(1.08);
   }
 
-  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 28px; }
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 30px; }
 
-  a { color: var(--text); text-decoration: none; border-bottom: 1px dotted var(--muted); }
-  a:hover { color: var(--accent); border-bottom-color: var(--accent); }
-
-  header { text-align: center; padding: 64px 28px 10px; }
-  header h1 {
-    font-size: 2.6rem; font-weight: 600; letter-spacing: 0.4px;
-    margin: 0 0 18px; color: var(--heading);
+  a {
+    color: var(--heading);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(18, 101, 116, 0.32);
+    transition: color .2s ease, border-color .2s ease, background .2s ease, transform .2s ease;
   }
-  .socials { display: flex; justify-content: center; gap: 14px; margin-bottom: 8px; }
+  a:hover { color: var(--sea); border-bottom-color: var(--sea); }
+
+  header {
+    position: relative;
+    text-align: center;
+    padding: 42px 28px 18px;
+  }
+  header::after {
+    content: "";
+    display: block;
+    width: 72px;
+    height: 1px;
+    margin: 28px auto 0;
+    background: linear-gradient(90deg, transparent, var(--sea-bright), transparent);
+  }
+  .socials {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px 0 4px;
+  }
+  .profile-title {
+    margin: 0;
+    color: var(--heading);
+    font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    font-size: clamp(1.65rem, 4.6vw, 3.15rem);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: 0.01em;
+  }
   .socials a {
-    display: inline-flex; align-items: center; justify-content: center;
-    width: 42px; height: 42px; border-radius: 50%;
-    border: 1px solid var(--line); color: var(--muted);
-    font-family: Arial, sans-serif; font-size: 0.72rem; font-weight: 600;
-    letter-spacing: 0.5px; transition: all .2s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    min-width: 46px;
+    height: 38px;
+    padding: 0;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: rgba(248, 252, 251, 0.58);
+    box-shadow: var(--ring);
+    color: var(--muted);
+    font-size: 0.76rem;
+    font-weight: 650;
+    line-height: 1;
   }
-  .socials a:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .socials svg {
+    display: block;
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+  }
+  .socials a:hover {
+    color: var(--paper);
+    background: var(--sea-deep);
+    border-color: var(--sea-deep);
+    transform: translateY(-1px);
+  }
 
-  .intro { padding: 28px 0 52px; text-align: left; }
-  .intro p { margin: 0 0 18px; }
+  .intro {
+    padding: 30px 0 58px;
+    text-align: left;
+  }
+  .intro p { margin: 0 0 20px; }
+  .intro p:first-child {
+    font-size: 1.02rem;
+  }
 
-  .band { height: 80px; width: 100%; }
-  .band.deep  { background: linear-gradient(90deg, #143642 0%, #1b98b5 100%); }
-  .band.tide  { background: linear-gradient(90deg, #1b98b5 0%, #6fd3c7 100%); }
-  .band.shore { background: linear-gradient(90deg, #2c6e8f 0%, #a8e0d8 100%); }
+  .band {
+    position: relative;
+    height: 68px;
+    width: 100%;
+    margin-left: 0;
+    margin-top: -2px;
+    margin-bottom: -2px;
+    overflow: hidden;
+    background: url("assets/sea-background.jpeg") center 63% / 118% auto no-repeat;
+    border: 0;
+    z-index: 2;
+  }
+  .band::before {
+    content: "";
+    position: absolute;
+    inset: -10px -90px;
+    background: url("assets/sea-background.jpeg") center 63% / 118% auto no-repeat;
+    filter: saturate(1.16) brightness(1.08);
+    transform: translate3d(-2.8%, 0, 0) scale(1.08);
+    animation: bandPhotoDrift 12s ease-in-out infinite alternate;
+  }
+  .band::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(90deg, rgba(8, 26, 38, 0.03), transparent 50%, rgba(8, 26, 38, 0.02));
+  }
+  .band.tide::before {
+    animation-duration: 22s;
+    background-position: center 75%;
+  }
+  .band.shore::before {
+    animation-duration: 20s;
+    background-position: center 87%;
+  }
 
-  section { padding: 52px 0; }
+  @keyframes bandPhotoDrift {
+    from { transform: translate3d(-2.8%, 0, 0) scale(1.08); }
+    to { transform: translate3d(2.8%, 0, 0) scale(1.10); }
+  }
+
+  section { padding: 58px 0; }
   section h2 {
-    font-size: 1.9rem; font-weight: 600; color: var(--heading);
-    margin: 0 0 28px; text-align: center;
+    margin: 0 0 30px;
+    color: var(--heading);
+    text-align: center;
+    font-family: "Avenir Next", Avenir, Inter, ui-sans-serif, system-ui, sans-serif;
+    font-size: clamp(1.7rem, 4vw, 2.35rem);
+    font-weight: 300;
+    line-height: 1.16;
+    letter-spacing: 0;
   }
 
-  .entry { margin-bottom: 26px; }
-  .entry .title { font-weight: 600; color: var(--heading); }
-  .entry .authors { display: block; }
-  .entry .venue { display: block; font-style: italic; color: var(--muted); }
-  .tags { margin-top: 8px; }
-  .tags a {
-    display: inline-block; border: 1px solid var(--line); border-radius: 4px;
-    padding: 3px 14px; margin-right: 8px; font-size: 0.82rem; color: var(--muted);
+  .entry,
+  .course {
+    position: relative;
+    margin-bottom: 14px;
+    padding: 22px 24px;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.70), rgba(238, 247, 244, 0.50)),
+      rgba(255, 255, 255, 0.42);
+    border: 1px solid rgba(255, 255, 255, 0.48);
+    border-radius: 20px;
+    box-shadow: 0 0 0 0.5px rgba(7, 31, 39, 0.04) inset, 0 1px 3px rgba(7, 31, 39, 0.04);
+    backdrop-filter: blur(8px) saturate(1.06);
   }
-  .tags a:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .entry::before,
+  .course::before {
+    content: "";
+    position: absolute;
+    top: 22px;
+    left: 0;
+    width: 3px;
+    height: 30px;
+    border-radius: 999px;
+    background: linear-gradient(180deg, var(--sea-bright), var(--sea-deep));
+  }
+  .entry:last-child,
+  .course:last-child { margin-bottom: 0; }
 
-  .course { margin-bottom: 32px; }
-  .course h3 { font-size: 1.2rem; font-weight: 600; color: var(--heading); margin: 0; }
-  .course h4 { font-size: 0.95rem; font-weight: 600; color: var(--accent-2); margin: 2px 0 10px; }
+  .entry .title {
+    display: block;
+    color: var(--heading);
+    font-weight: 650;
+    line-height: 1.42;
+  }
+  .entry .authors {
+    display: block;
+    margin-top: 6px;
+    color: var(--ink);
+  }
+  .entry .venue {
+    display: block;
+    margin-top: 2px;
+    color: var(--muted);
+    font-style: italic;
+  }
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 14px;
+  }
+  .tags a,
+  .tags span {
+    display: inline-flex;
+    align-items: center;
+    min-height: 34px;
+    padding: 0 14px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.62);
+    box-shadow: var(--ring);
+    color: var(--sea-deep);
+    font-size: 0.83rem;
+    font-weight: 650;
+    line-height: 1;
+  }
+  .tags a:hover {
+    color: var(--paper);
+    background: var(--sea-deep);
+    border-color: var(--sea-deep);
+  }
+
+  .course h3 {
+    margin: 0;
+    color: var(--heading);
+    font-size: 1.12rem;
+    font-weight: 650;
+    line-height: 1.38;
+  }
+  .course h4 {
+    margin: 5px 0 12px;
+    color: var(--sea);
+    font-size: 0.94rem;
+    font-weight: 650;
+    line-height: 1.45;
+  }
   .course p { margin: 0; }
 
   footer {
-    text-align: center; padding: 44px 28px 56px; font-size: 0.85rem;
-    color: var(--muted); border-top: 1px solid var(--line);
+    padding: 42px 28px 54px;
+    border-top: 1px solid var(--line);
+    background: linear-gradient(180deg, rgba(238, 247, 244, 0.30), rgba(255, 253, 249, 0.58));
+    color: var(--muted);
+    text-align: center;
+    font-size: 0.86rem;
   }
 
-  @media (max-width: 600px) {
-    header h1 { font-size: 2rem; }
-    section h2 { font-size: 1.5rem; }
+  @media (max-width: 680px) {
     body { font-size: 16px; }
-    .sheet { margin: 20px 12px; }
+    .sheet {
+      margin: 20px 10px 44px;
+      border-radius: 18px;
+    }
+    .wrap { padding: 0 20px; }
+    header { padding: 38px 20px 12px; }
+    .intro { padding-bottom: 44px; }
+    .band { height: 56px; }
+    section { padding: 44px 0; }
+    .entry,
+    .course {
+      padding: 20px 18px 20px 20px;
+      border-radius: 16px;
+    }
+    .socials a {
+      min-width: 42px;
+      height: 36px;
+      padding: 0 12px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    a { transition: none; }
+    .band::before { animation: none; }
   }
 </style>
 </head>
 <body>
 
-  <!-- animated ocean behind everything -->
-  <div class="ocean">
-    <svg class="wave1" viewBox="0 0 1200 180" preserveAspectRatio="none">
-      <path d="M0,90 C200,140 400,40 600,90 C800,140 1000,40 1200,90 L1200,180 L0,180 Z" fill="#e8fbff"/>
-    </svg>
-    <svg class="wave2" viewBox="0 0 1200 180" preserveAspectRatio="none">
-      <path d="M0,110 C200,60 400,160 600,110 C800,60 1000,160 1200,110 L1200,180 L0,180 Z" fill="#d3f3fb"/>
-    </svg>
-    <svg class="wave3" viewBox="0 0 1200 180" preserveAspectRatio="none">
-      <path d="M0,130 C300,170 500,90 700,130 C900,170 1100,90 1200,130 L1200,180 L0,180 Z" fill="#ffffff"/>
-    </svg>
-  </div>
+  <main class="sheet">
+    <header>
+      <h1 class="profile-title">Gabriel A. Pierzynski</h1>
+      <div class="socials" aria-label="Profile links">
+        <a href="https://www.linkedin.com/in/gabriel-a-pierzynski/" title="LinkedIn" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5ZM.36 8h4.28v14H.36V8Zm7.42 0h4.1v1.91h.06c.57-1.08 1.96-2.22 4.04-2.22 4.32 0 5.12 2.84 5.12 6.54V22h-4.28v-6.89c0-1.64-.03-3.75-2.29-3.75-2.29 0-2.64 1.79-2.64 3.63V22H7.78V8Z"/>
+          </svg>
+        </a>
+        <a href="https://www.lse.ac.uk/Hellenic-Observatory/People/Research-Group/gabriel-pierzynski" title="LSE">LSE</a>
+        <a href="mailto:g.a.pierzynski@lse.ac.uk" title="Email">@</a>
+        <a href="https://github.com/G-A-Pierzynski" title="GitHub" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 .5C5.65.5.5 5.65.5 12c0 5.09 3.29 9.4 7.86 10.93.58.11.79-.25.79-.56v-2.05c-3.2.7-3.87-1.38-3.87-1.38-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.68 1.24 3.33.95.1-.74.4-1.24.73-1.53-2.55-.29-5.23-1.28-5.23-5.68 0-1.25.45-2.28 1.18-3.08-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.15 1.18.91-.25 1.89-.38 2.86-.38.97 0 1.95.13 2.86.38 2.19-1.49 3.15-1.18 3.15-1.18.62 1.58.23 2.75.11 3.04.74.8 1.18 1.83 1.18 3.08 0 4.42-2.69 5.38-5.25 5.67.41.35.78 1.05.78 2.13v3.16c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/>
+          </svg>
+        </a>
+        <a href="https://scholar.google.com/citations?user=Rm63qQcAAAAJ&amp;hl=en" title="Google Scholar" aria-label="Google Scholar">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 2 1.8 9.05 12 16.1l8.35-5.77V17h1.85V9.05L12 2Zm0 16.27L5.85 14.02v2.93c0 2.07 2.75 3.75 6.15 3.75s6.15-1.68 6.15-3.75v-2.93L12 18.27Z"/>
+          </svg>
+        </a>
+      </div>
+    </header>
 
-  <div class="sheet">
-  <header>
-    <h1>Gabriel A. Pierzynski</h1>
-    <div class="socials">
-      <a href="https://www.linkedin.com/in/gabriel-a-pierzynski/" title="LinkedIn">in</a>
-      <a href="https://www.lse.ac.uk/Hellenic-Observatory/People/Research-Group/gabriel-pierzynski" title="LSE">LSE</a>
-      <a href="mailto:g.a.pierzynski@lse.ac.uk" title="Email">@</a>
-      <a href="https://scholar.google.com/citations?user=Rm63qQcAAAAJ&hl=en" title="Google Scholar">GS</a>
-    </div>
-  </header>
-
-  <div class="wrap">
-    <div class="intro">
-      <p>Hi! I'm Gabriel, an incoming PhD student in Economic Geography & Data Science at the
-      London School of Economics and Political Science (LSE), starting in
-      September. My doctoral research, advised by
-      <a href="https://www.lse.ac.uk/geography-and-environment/people/academic-staff/neil-lee">Neil Lee</a>
-      and
-      <a href="https://www.lse.ac.uk/european-institute/people/monastiriotis-vassilis">Vassilis Monastiriotis</a>,
-      investigates the economics of digital technology diffusion - why digital
-      technologies cluster spatially, and the role of human capital, competition,
-      and industrial policy in how they spread. Outside of my PhD commitments, I also do research in IR Theory and Philosophy of Social Science.</p>
-
-       <p>I hold an MSc in European and International Public Policy (Political
-      Economy) from LSE (2024) and a BSc in Philosophy and Politics from the
-      University of Bristol (2023). </p>
-      
-      <p>I have been published in the
-      <a href="https://doi.org/10.1111/jtsb.70007">Journal for the Theory of Social Behaviour</a>
-      on the causes of the Ukrainian war (with a
-      <a href="https://onlinelibrary.wiley.com/doi/10.1111/jtsb.70025">reply</a> to my article by
-      Heikki Patomäki), as well as the
-      <a href="https://doi.org/10.3389/fpos.2025.1574418">Frontiers in Political Science</a>
-      journal. In my free time I sail the Baltic as a watch officer on tall ships.</p>
-
-    </div>
-  </div>
-
-  <div class="band deep"></div>
-
-  <section id="publications">
     <div class="wrap">
-      <h2>Publications</h2>
+      <div class="intro">
+        <p>Hi! I'm Gabriel, an incoming PhD student in Economic Geography &amp; Data Science at the
+        London School of Economics and Political Science (LSE), starting in
+        September. My doctoral research, advised by
+        <a href="https://www.lse.ac.uk/geography-and-environment/people/academic-staff/neil-lee">Neil Lee</a>
+        and
+        <a href="https://www.lse.ac.uk/european-institute/people/monastiriotis-vassilis">Vassilis Monastiriotis</a>,
+        investigates the economics of digital technology diffusion - why digital
+        technologies cluster spatially, and the role of human capital, competition,
+        and industrial policy in how they spread. Outside of my PhD commitments, I also do research in IR Theory and Philosophy of Social Science.</p>
 
-      <div class="entry">
-        <span class="title">The Brexit trajectory: structure and agency in a potential Polexit</span>
-        <span class="authors">Roch Dunin-Wąsowicz, Max Migden, Gabriel A. Pierzynski</span>
-        <span class="venue">Frontiers in Political Science, 2026</span>
-        <div class="tags">
-          <a href="">Paper</a>
-        </div>
-      </div>
+        <p>I hold an MSc in European and International Public Policy (Political
+        Economy) from LSE (2024) and a BSc in Philosophy and Politics from the
+        University of Bristol (2023).</p>
 
-      <div class="entry">
-        <span class="title">A response to Heikki Patomäki: on social mechanisms</span>
-        <span class="authors">Gabriel A. Pierzynski, Jonathan Joseph</span>
-        <span class="venue">Journal for the Theory of Social Behaviour, 2025</span>
-        <div class="tags">
-          <a href="https://doi.org/10.1111/jtsb.70026">Paper</a>
-        </div>
-      </div>
-
-      <div class="entry">
-        <span class="title">Patrimonial imperialism: a taxonomy of the causes of the Russo-Ukrainian war</span>
-        <span class="authors">Gabriel A. Pierzynski, Jonathan Joseph</span>
-        <span class="venue">Journal for the Theory of Social Behaviour, 2025</span>
-        <div class="tags">
-          <a href="https://doi.org/10.1111/jtsb.70007">Paper</a>
-        </div>
+        <p>I have been published in the
+        <a href="https://doi.org/10.1111/jtsb.70007">Journal for the Theory of Social Behaviour</a>
+        on the causes of the Ukrainian war (with a
+        <a href="https://onlinelibrary.wiley.com/doi/10.1111/jtsb.70025">reply</a> to my article by
+        Heikki Patomäki), as well as the
+        <a href="https://doi.org/10.3389/fpos.2025.1574418">Frontiers in Political Science</a>
+        journal. In my free time I sail the Baltic as a watch officer on tall ships.</p>
       </div>
     </div>
-  </section>
 
-  <div class="band tide"></div>
+    <div class="band deep"></div>
 
-  <section id="writing">
-    <div class="wrap">
-      <h2>Writing &amp; Policy Pieces</h2>
+    <section id="publications">
+      <div class="wrap">
+        <h2>Publications</h2>
 
-      <div class="entry">
-        <span class="title">Why the Russia-Ukraine war isn't just about NATO and Putin</span>
-        <span class="authors">Gabriel A. Pierzynski, Jonathan Joseph</span>
-        <span class="venue">LSE EUROPP Blog, 2025</span>
-        <div class="tags">
-          <a href="https://blogs.lse.ac.uk/europpblog/2025/08/15/why-the-russia-ukraine-war-isnt-just-about-nato-and-putin/">Read</a>
+        <div class="entry">
+          <span class="title">The Brexit trajectory: structure and agency in a potential Polexit</span>
+          <span class="authors">Roch Dunin-Wąsowicz, Max Migden, Gabriel A. Pierzynski</span>
+          <span class="venue">Frontiers in Political Science, 2026</span>
+          <div class="tags">
+            <a href="https://www.frontiersin.org/journals/political-science/articles/10.3389/fpos.2026.1726767/full">Paper</a>
+          </div>
+        </div>
+
+        <div class="entry">
+          <span class="title">A response to Heikki Patomäki: on social mechanisms</span>
+          <span class="authors">Gabriel A. Pierzynski, Jonathan Joseph</span>
+          <span class="venue">Journal for the Theory of Social Behaviour, 2025</span>
+          <div class="tags">
+            <a href="https://doi.org/10.1111/jtsb.70026">Paper</a>
+          </div>
+        </div>
+
+        <div class="entry">
+          <span class="title">Patrimonial imperialism: a taxonomy of the causes of the Russo-Ukrainian war</span>
+          <span class="authors">Gabriel A. Pierzynski, Jonathan Joseph</span>
+          <span class="venue">Journal for the Theory of Social Behaviour, 2025</span>
+          <div class="tags">
+            <a href="https://doi.org/10.1111/jtsb.70007">Paper</a>
+          </div>
         </div>
       </div>
+    </section>
 
-      <div class="entry">
-        <span class="title">The EU's geopolitical turn: the reaction to the war in Ukraine and its implications</span>
-        <span class="authors">Gabriel A. Pierzynski, Roch Dunin-Wąsowicz</span>
-        <span class="venue">89 Global, 2025</span>
-        <div class="tags">
-          <a href="https://89gcs.com/the-eus-geopolitical-turn-how-the-eus-reaction-to-the-war-in-ukraine-constitutes-an-integrationist-shift/">Read</a>
+    <div class="band tide"></div>
+
+    <section id="experience">
+      <div class="wrap">
+        <h2>Experience</h2>
+
+        <div class="course">
+          <h3>Research Associate - Economics &amp; Data Science</h3>
+          <h4>London School of Economics and Political Science (2025-present)</h4>
+          <p>Lead the data work across several empirical economics projects under
+          Professor Vassilis Monastiriotis. Built the most complete dataset of EU
+          industrial-policy expenditure (2000-2026); led analysis comparing the
+          local economic effects of data-centre build-out in Europe and the US; and
+          built LLM-based tools for text analysis of parliamentary debate and for
+          identifying drivers of regional growth accelerations.</p>
+        </div>
+
+        <div class="course">
+          <h3>Blue Book Trainee - Economic Analysis &amp; European Semester</h3>
+          <h4>European Commission (2024-2025)</h4>
+          <p>Performed econometric analysis of regional inequalities under EU
+          Cohesion Policy in R, and built a reproducible pipeline for large-scale
+          territorial data processing from EU statistical databases.</p>
+        </div>
+
+        <div class="course">
+          <h3>Junior Policy Associate</h3>
+          <h4>89 Global / 89 Initiative (2023-2025)</h4>
+          <p>Conducted and published policy research on EU exits and on political
+          responses to the Russo-Ukrainian war.</p>
         </div>
       </div>
+    </section>
 
-      <div class="entry">
-        <span class="title">Lessons from Brexit — is Polexit a possibility?</span>
-        <span class="authors">Roch Dunin-Wąsowicz, Max Migden, Gabriel A. Pierzynski</span>
-        <span class="venue">LSE EUROPP Blog, 2023</span>
-        <div class="tags">
-          <a href="https://blogs.lse.ac.uk/europpblog/2023/10/13/lessons-from-brexit-is-polexit-a-possibility/">Read</a>
+    <div class="band shore"></div>
+
+    <section id="writing">
+      <div class="wrap">
+        <h2>Writing &amp; Policy Pieces</h2>
+
+        <div class="entry">
+          <span class="title">Why the Russia-Ukraine war isn't just about NATO and Putin</span>
+          <span class="authors">Gabriel A. Pierzynski, Jonathan Joseph</span>
+          <span class="venue">LSE EUROPP Blog, 2025</span>
+          <div class="tags">
+            <a href="https://blogs.lse.ac.uk/europpblog/2025/08/15/why-the-russia-ukraine-war-isnt-just-about-nato-and-putin/">Read</a>
+          </div>
+        </div>
+
+        <div class="entry">
+          <span class="title">The EU's geopolitical turn: the reaction to the war in Ukraine and its implications</span>
+          <span class="authors">Gabriel A. Pierzynski, Roch Dunin-Wąsowicz</span>
+          <span class="venue">89 Global, 2025</span>
+          <div class="tags">
+            <a href="https://89gcs.com/the-eus-geopolitical-turn-how-the-eus-reaction-to-the-war-in-ukraine-constitutes-an-integrationist-shift/">Read</a>
+          </div>
+        </div>
+
+        <div class="entry">
+          <span class="title">Lessons from Brexit - is Polexit a possibility?</span>
+          <span class="authors">Roch Dunin-Wąsowicz, Max Migden, Gabriel A. Pierzynski</span>
+          <span class="venue">LSE EUROPP Blog, 2023</span>
+          <div class="tags">
+            <a href="https://blogs.lse.ac.uk/europpblog/2023/10/13/lessons-from-brexit-is-polexit-a-possibility/">Read</a>
+          </div>
+        </div>
+
+        <div class="entry">
+          <span class="title">The European army: a symbol</span>
+          <span class="authors">Gabriel A. Pierzynski</span>
+          <span class="venue">Sigma Iota Rho Online Journal of International Relations, 2022</span>
+          <div class="tags">
+            <a href="https://www.sirjournal.org/op-ed/the-european-army-a-symbol">Read</a>
+          </div>
         </div>
       </div>
+    </section>
 
-      <div class="entry">
-        <span class="title">The European army: a symbol</span>
-        <span class="authors">Gabriel A. Pierzynski</span>
-        <span class="venue">Sigma Iota Rho Online Journal of International Relations, 2022</span>
-        <div class="tags">
-          <a href="https://www.sirjournal.org/op-ed/the-european-army-a-symbol">Read</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="band shore"></div>
-
-  <section id="experience">
-    <div class="wrap">
-      <h2>Experience</h2>
-
-      <div class="course">
-        <h3>Research Associate — Economics &amp; Data Science</h3>
-        <h4>London School of Economics and Political Science (2025–present)</h4>
-        <p>Lead the data work across several empirical economics projects under
-        Professor Vassilis Monastiriotis. Built the most complete dataset of EU
-        industrial-policy expenditure (2000–2026); led analysis comparing the
-        local economic effects of data-centre build-out in Europe and the US; and
-        built LLM-based tools for text analysis of parliamentary debate and for
-        identifying drivers of regional growth accelerations.</p>
-      </div>
-
-      <div class="course">
-        <h3>Blue Book Trainee — Economic Analysis &amp; European Semester</h3>
-        <h4>European Commission (2024–2025)</h4>
-        <p>Performed econometric analysis of regional inequalities under EU
-        Cohesion Policy in R, and built a reproducible pipeline for large-scale
-        territorial data processing from EU statistical databases.</p>
-      </div>
-
-      <div class="course">
-        <h3>Junior Policy Associate</h3>
-        <h4>89 Global / 89 Initiative (2023–2025)</h4>
-        <p>Conducted and published policy research on EU exits and on political
-        responses to the Russo-Ukrainian war.</p>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    © 2026 Gabriel A. Pierzynski. Design inspired by a layout from
-    <a href="https://html5up.net/">HTML5 UP</a>.
-  </footer>
+    <footer>
+      © 2026 Gabriel A. Pierzynski. Design inspired by a layout from
+      <a href="https://html5up.net/">HTML5 UP</a>.
+    </footer>
+  </main>
 
 </body>
 </html>
